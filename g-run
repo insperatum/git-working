@@ -1,0 +1,30 @@
+#!/bin/bash
+
+date=`date +%Y-%m-%d`
+timestr=$(($(date +'%s * 1000 + %-N / 1000000')))
+
+if [ -z "$dir" ]; then
+	if [ -z "$name" ]; then
+		name=$timestr
+	else
+		name="${name}_${timestr}"
+	fi
+	dir=experiments/$name
+fi
+init_dir=$(pwd)
+
+git checkout --quiet -B working || exit
+git pull --no-edit --quiet origin working || exit
+git add -u || exit
+git commit --quiet --allow-empty -m "Experiment $name" || exit
+git push --quiet origin working || exit
+
+current_origin=`git remote get-url origin`
+echo "Cloining $current_origin into in $dir"
+mkdir -p "$dir"
+cd "$dir"
+git clone --quiet -b working --recurse-submodules --depth 1 $current_origin . || exit
+git remote set-url --push origin no_push
+
+echo "Launching"
+$@

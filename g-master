@@ -1,0 +1,4 @@
+#!/bin/bash
+
+git reset `git rev-parse master`
+git checkout master
