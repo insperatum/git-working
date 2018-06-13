@@ -19,7 +19,7 @@ git add -u || exit
 git commit --quiet --allow-empty -m "Experiment $name" || exit
 git push --quiet origin working || exit
 
-current_origin=`git remote get-url origin`
+current_origin=`git config remote.origin.url`
 echo "Cloining $current_origin into in $dir"
 mkdir -p "$dir"
 cd "$dir"
