@@ -11,6 +11,7 @@ Every launched experiment is executed from its own folder, and tied to its own g
 ```sh
 git add <files> #Add any new files
 [name=<experiment name>] g-run <command> #e.g: name=linear_model g-run sbatch --time=60 run.sh
+# Code is copied to 'experiments/<name>_<date>' and launched from there.
 ```
 
 4. Merge changes into master:
