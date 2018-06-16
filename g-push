@@ -3,6 +3,6 @@
 git checkout master
 git push origin master
 git checkout working
-git pull origin working
+git reset 'working@{1}' # This should be top of the working branch
 git merge -X theirs --no-edit master
 git push origin working
