@@ -1,6 +1,7 @@
 #!/bin/bash
 
-g-update && ($0 $@; exit) # Update && re-execute
+g-update && g_updated=1
+if [ $g_updated -eq 1 ]; then $0 $@; exit; fi # Update && re-execute
 
 git checkout -B working
 git add -u
