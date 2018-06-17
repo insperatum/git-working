@@ -1,0 +1,12 @@
+#!/bin/bash
+
+cd `dirname "$0"`
+git fetch
+newcommits=`git rev-list HEAD..origin/master --count`
+if [ "$newcommits" -gt "0" ]; then
+	read -p "Update available. Install? (y/n) " yn
+    case $yn in
+        [Yy]* ) git pull origin master; exit 0 
+    esac
+fi
+exit 1
