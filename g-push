@@ -6,8 +6,6 @@ if [ ! -z "$g_updated" ]; then $0 $@; exit; fi # Update && re-execute
 git checkout master
 git push origin master
 git checkout working
-git reset 'working@{1}' # This should be top of the working branch
-git merge -X theirs --no-edit master
+git reset --hard 'working@{1}' # This should be top of the working branch
+git merge --no-edit master
 git push origin working
-
-g-update
