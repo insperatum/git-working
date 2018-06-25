@@ -4,6 +4,7 @@ g-update && g_updated=1
 if [ ! -z "$g_updated" ]; then $0 $@; exit; fi # Update && re-execute
 
 git checkout -B working
+echo /experiments >> .gitignore
 git add -u
 git commit -m "work in progress"
 git push origin working
