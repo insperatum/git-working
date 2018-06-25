@@ -3,6 +3,7 @@
 g-update && g_updated=1
 if [ ! -z "$g_updated" ]; then $0 $@; exit; fi # Update && re-execute
 
+
 date=`date +%Y-%m-%d`
 timestr=$(($(date +'%s * 1000 + %-N / 1000000')))
 
@@ -29,5 +30,6 @@ cd "$dir"
 git clone --quiet -b working --recurse-submodules --depth 1 $current_origin . || exit
 git remote set-url --push origin no_push
 
-echo "Launching"
+
+[ -f ./.g-run ] && ./.g-run
 $@

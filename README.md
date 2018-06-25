@@ -1,6 +1,7 @@
 # git-working
 Scripts for developing + running experiments with git in the loop.  
-Every launched experiment is executed from its own folder, and tied to its own git commit in a working branch.
+Every launched experiment is executed from its own folder, and tied to its own git commit in a working branch.  
+_new_: If `<project root>/.g-run` is an executable script, g-run will call it inside the experiment directory before launch. Can be used for setup (e.g. `ln -s /path/to/data`)
 
 ## Usage
 1. Clone this repo and add it to your `$PATH`
