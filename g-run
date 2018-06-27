@@ -24,7 +24,7 @@ git commit --quiet --allow-empty -m "Experiment $name" || exit
 git push --quiet origin working || exit
 
 current_origin=`git config remote.origin.url`
-echo "Cloining $current_origin into in $dir"
+echo "Cloning $current_origin into in $dir"
 mkdir -p "$dir"
 cd "$dir"
 git clone --quiet -b working --recurse-submodules --depth 1 $current_origin . || exit
