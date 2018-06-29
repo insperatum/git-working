@@ -6,7 +6,7 @@ if [ ! -z "$g_updated" ]; then $0 $@; exit; fi # Update && re-execute
 git checkout master || ! g-error $0 line $LINENO || exit 1 
 git pull --no-edit origin master || ! g-error $0 line $LINENO || exit 1 
 git push origin master || ! g-error $0 line $LINENO || exit 1 
-git checkout working || ! g-error $0 line $LINENO || exit 1 
-git reset --hard 'working@{1}' || ! g-error $0 line $LINENO || exit 1 
+git checkout working-$USER || ! g-error $0 line $LINENO || exit 1 
+git reset --hard working-${USER}@{1} || ! g-error $0 line $LINENO || exit 1 
 git merge --no-edit master || ! g-error $0 line $LINENO || exit 1 
-git push origin working || ! g-error $0 line $LINENO || exit 1 
+git push origin working-$USER || ! g-error $0 line $LINENO || exit 1 

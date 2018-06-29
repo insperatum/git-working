@@ -17,17 +17,17 @@ if [ -z "$dir" ]; then
 fi
 init_dir=$(pwd)
 
-git checkout --quiet -B working || ! g-error $0 line $LINENO || exit 1
-git pull --no-edit --quiet origin working || ! g-error $0 line $LINENO || exit 1
+git checkout --quiet -B working-$USER || ! g-error $0 line $LINENO || exit 1
+git pull --no-edit --quiet origin working-$USER || ! g-error $0 line $LINENO || exit 1
 git add -u || ! g-error $0 line $LINENO || exit 1
 git commit --quiet --allow-empty -m "Experiment $name" || ! g-error $0 line $LINENO || exit 1
-git push --quiet origin working || ! g-error $0 line $LINENO || exit 1
+git push --quiet origin working-$USER || ! g-error $0 line $LINENO || exit 1
 
 current_origin=`git config remote.origin.url`
 echo "Cloning $current_origin into in $dir"
 mkdir -p "$dir"
 cd "$dir"
-git clone --quiet -b working --recurse-submodules --depth 1 $current_origin . || ! g-error $0 line $LINENO || exit 1
+git clone --quiet -b working-$USER --recurse-submodules --depth 1 $current_origin . || ! g-error $0 line $LINENO || exit 1
 git remote set-url --push origin no_push || ! g-error $0 line $LINENO || exit 1
 
 [ -f ./.g-run ] && ./.g-run
