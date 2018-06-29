@@ -4,6 +4,6 @@ g-update && g_updated=1
 if [ ! -z "$g_updated" ]; then $0 $@; exit; fi # Update && re-execute
 
 git add -u
-git commit -m "Final working state"
-git reset `git rev-parse master`
-git checkout master
+git commit --allow-empty -m "Final working state" || ! g-error $0 line $LINENO || exit 1
+git reset `git rev-parse master` || ! g-error $0 line $LINENO || exit 1
+git checkout master || ! g-error $0 line $LINENO || exit 1

@@ -1,0 +1,15 @@
+#!/bin/bash
+
+echo
+echo "--------------------"
+echo "Error: $@"
+git --version
+git status
+git reflog | head -n10
+git log --pretty=oneline -n10 | head -n10
+echo git-working:
+cd `dirname "$0"`
+git log --pretty=oneline -n1 | head -n1
+echo
+echo "Oops, something went wrong. Submit a github issue?"
+

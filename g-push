@@ -3,10 +3,10 @@
 g-update && g_updated=1
 if [ ! -z "$g_updated" ]; then $0 $@; exit; fi # Update && re-execute
 
-git checkout master && \
-git pull --no-edit origin master && \
-git push origin master && \
-git checkout working && \
-git reset --hard 'working@{1}' && \
-git merge --no-edit master && \
-git push origin working
+git checkout master || ! g-error $0 line $LINENO || exit 1 
+git pull --no-edit origin master || ! g-error $0 line $LINENO || exit 1 
+git push origin master || ! g-error $0 line $LINENO || exit 1 
+git checkout working || ! g-error $0 line $LINENO || exit 1 
+git reset --hard 'working@{1}' || ! g-error $0 line $LINENO || exit 1 
+git merge --no-edit master || ! g-error $0 line $LINENO || exit 1 
+git push origin working || ! g-error $0 line $LINENO || exit 1 

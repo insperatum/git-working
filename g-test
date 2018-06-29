@@ -1,32 +1,37 @@
-g-working
-touch foo1 foo2 foo3
-git add foo2
-echo "Experiment should have: foo2"
-g-run "ls foo*"
-git add foo3
-g-master
-git add foo2 foo3
-git commit -m "create: foo2 foo3"
-g-push
-echo edited > foo2
-echo edited > foo3
-touch foo4 foo5
-git add foo2 foo3 foo4 foo5
-g-master
-git add foo1
-git commit -m "add foo1"
-git add foo2
-git commit -m "edit foo2"
-git add foo4
-git commit -m "add foo4"
-g-push
+#!/bin/bash
 
-git checkout working
-echo "Working should have: foo1 foo2(edited) foo3(edited) foo4 foo5"
-for f in foo*; do echo $f; cat $f; done
-
-git checkout master
-echo "Master should have: foo1 foo2(edited) foo3 foo4"
-for f in foo*; do echo $f; cat $f; done
-
-git checkout working
+echo g-working && g-working &&
+echo touch foo1 foo2 foo3 && touch foo1 foo2 foo3 &&
+echo git add foo2 && git add foo2 &&
+echo &&
+echo "Experiment should have: foo2" &&
+echo g-run "ls foo*" && g-run "ls foo*" &&
+echo &&
+echo git add foo3 && git add foo3 &&
+echo g-master && g-master &&
+echo git add foo2 foo3 && git add foo2 foo3 &&
+echo git commit -m "create: foo2 foo3" && git commit -m "create: foo2 foo3" &&
+echo g-push && g-push &&
+echo edited > foo2 &&
+echo edited > foo3 &&
+echo touch foo4 foo5 && touch foo4 foo5 &&
+echo git add foo2 foo3 foo4 foo5 && git add foo2 foo3 foo4 foo5 &&
+echo g-master && g-master &&
+echo git add foo1 && git add foo1 &&
+echo git commit -m "add foo1" && git commit -m "add foo1" &&
+echo git add foo2 && git add foo2 &&
+echo git commit -m "edit foo2" && git commit -m "edit foo2" &&
+echo git add foo4 && git add foo4 &&
+echo git commit -m "add foo4" && git commit -m "add foo4" &&
+echo g-push && g-push &&
+echo git checkout working && git checkout working &&
+echo "Working should have: foo1 foo2(edited) foo3(edited) foo4 foo5" &&
+for f in foo*; do echo $f; cat $f; done &&
+echo git checkout master && git checkout master &&
+echo &&
+echo "Master should have: foo1 foo2(edited) foo3 foo4" &&
+for f in foo*; do echo $f; cat $f; done &&
+echo &&
+echo git checkout working && git checkout working
+echo &&
+echo finished!
