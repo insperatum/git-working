@@ -31,4 +31,5 @@ git clone --quiet -b working-$USER --recurse-submodules --depth 1 $current_origi
 git remote set-url --push origin no_push || ! g-error $0 line $LINENO || exit 1
 
 [ -f ./.g-run ] && ./.g-run
+echo "$@" > g-command.txt
 $@
