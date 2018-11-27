@@ -1,4 +1,5 @@
 #!/bin/bash
+if [ -z "$working"]; then working=working-${USER}-`hostname`; fi
 
 echo g-working && g-working &&
 echo touch foo1 foo2 foo3 && touch foo1 foo2 foo3 &&
@@ -24,7 +25,7 @@ echo git commit -m "edit foo2" && git commit -m "edit foo2" &&
 echo git add foo4 && git add foo4 &&
 echo git commit -m "add foo4" && git commit -m "add foo4" &&
 echo g-push && g-push &&
-echo git checkout working-$USER && git checkout working-$USER &&
+echo git checkout $working && git checkout $working &&
 echo "Working should have: foo1 foo2(edited) foo3(edited) foo4 foo5" &&
 for f in foo*; do echo $f; cat $f; done &&
 echo git checkout master && git checkout master &&
@@ -32,6 +33,6 @@ echo &&
 echo "Master should have: foo1 foo2(edited) foo3 foo4" &&
 for f in foo*; do echo $f; cat $f; done &&
 echo &&
-echo git checkout working-$USER && git checkout working-$USER
+echo git checkout $working && git checkout $working
 echo &&
 echo finished!
