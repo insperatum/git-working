@@ -1,5 +1,5 @@
 #!/bin/bash
-working=working-${USER}-`hostname`
+if [ -z "$working"]; then working=working-${USER}-`hostname`; fi
 
 echo g-working && g-working &&
 echo touch foo1 foo2 foo3 && touch foo1 foo2 foo3 &&

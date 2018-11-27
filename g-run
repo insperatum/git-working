@@ -3,7 +3,7 @@
 g-update && g_updated=1
 if [ ! -z "$g_updated" ]; then $0 $@; exit; fi # Update && re-execute
 
-working=working-${USER}-`hostname`
+if [ -z "$working" ]; then working=working-${USER}-`hostname`; fi
 date=`date +%Y-%m-%d`
 timestr=$(($(date +'%s * 1000 + %-N / 1000000')))
 

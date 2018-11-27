@@ -2,7 +2,7 @@
 g-update && g_updated=1
 if [ ! -z "$g_updated" ]; then $0 $@; exit; fi # Update && re-execute
 
-working=working-${USER}-`hostname`
+if [ -z "$working" ]; then working=working-${USER}-`hostname`; fi
 git checkout master || ! g-error $0 line $LINENO || exit 1 
 git pull --no-edit origin master || ! g-error $0 line $LINENO || exit 1 
 git push origin master || ! g-error $0 line $LINENO || exit 1 
